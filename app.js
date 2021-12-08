@@ -33,6 +33,11 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null
     })
+
+    win.webContents.on('new-window', function(e, url) {
+        e.preventDefault();
+        require('electron').shell.openExternal(url);
+    });
 }
 
 app.whenReady().then(() => {
